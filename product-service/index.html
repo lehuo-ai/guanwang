@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>乐活OKR — 产品与服务简介</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --p:#FF6B35;--pd:#E55A2B;--pl:#FF8C5A;--ps:#FFF3ED;
+  --s:#1A2332;--t:#3D4A5C;--tl:#8899AA;
+  --b:#fff;--ba:#F6F8FB;
+  --e:#E8ECF2;--sh:0 2px 12px rgba(0,0,0,.06);
+  --r:10px;--rl:16px;--tr:all .3s ease;
+  --f:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+}
+html{scroll-behavior:smooth;font-size:15px;-webkit-text-size-adjust:100%}
+body{font-family:var(--f);color:var(--t);line-height:1.7;background:var(--ba)}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+.container{max-width:640px;margin:0 auto;padding:0 14px}
+
+/* ====== Header ====== */
+.header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--e);height:48px;display:flex;align-items:center}
+.header .container{width:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center}
+.logo img{height:20px;width:auto;display:block}
+.header .meta{font-size:11px;color:var(--tl)}
+
+/* ====== Hero ====== */
+.hero{background:linear-gradient(135deg,#FFF8F5,#fff 40%,#F5F8FF);padding:68px 0 28px;text-align:center;min-height:auto}
+.hero-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,107,53,.08);color:var(--p);padding:3px 12px;border-radius:20px;font-size:10px;font-weight:600;margin-bottom:10px;letter-spacing:.3px}
+.hero-badge .dot{width:4px;height:4px;border-radius:50%;background:var(--p);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:26px;font-weight:800;color:var(--s);line-height:1.25;margin-bottom:6px;letter-spacing:-.3px}
+.hero h1 .hl{color:var(--p)}
+.hero .sub{font-size:12px;color:var(--tl);margin-bottom:12px}
+.hero .desc{font-size:12px;color:var(--tl);max-width:400px;margin:0 auto;line-height:1.6}
+
+/* ====== Quick Nav ====== */
+.nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:18px 14px;max-width:640px;margin:0 auto}
+.nav-card{background:#fff;border-radius:var(--r);padding:14px 8px;text-align:center;border:1px solid var(--e);transition:var(--tr);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.nav-card:active{background:var(--ba);transform:scale(.97)}
+.nav-card .nm{font-size:12px;font-weight:600;color:var(--s)}
+.nav-card .sc{font-size:10px;color:var(--tl);margin-top:2px}
+.nav-card:hover{border-color:var(--p)}
+
+/* ====== Sections ====== */
+.section{margin:0 14px 10px;background:#fff;border-radius:var(--rl);border:1px solid var(--e);overflow:hidden}
+.section-hd{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;cursor:pointer;gap:10px;-webkit-tap-highlight-color:transparent;user-select:none}
+.section-hd:active{background:var(--ba)}
+.section-hd .left{display:flex;align-items:center;gap:8px}
+.section-hd .tag{font-size:9px;font-weight:700;padding:2px 10px;border-radius:10px;color:#fff;letter-spacing:.5px}
+.section-hd .tag1{background:var(--p)}
+.section-hd .tag2{background:#4A7CF7}
+.section-hd .tag3{background:#8B5CF6}
+.section-hd .tag4{background:#10B981}
+.section-hd .tag5{background:var(--s)}
+.section-hd .tag6{background:#F59E0B}
+.section-hd .ttl{font-size:14px;font-weight:600;color:var(--s)}
+.section-hd .arr{font-size:12px;color:var(--tl);transition:var(--tr)}
+.section.open .section-hd .arr{transform:rotate(180deg)}
+.section-bd{padding:0 16px 16px;display:none}
+.section.open .section-bd{display:block}
+
+/* ====== Content ====== */
+.stats-row{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:14px}
+.stat-it{text-align:center;padding:10px 4px;background:var(--ba);border-radius:var(--r)}
+.stat-it .num{font-size:20px;font-weight:800;color:var(--p);line-height:1.1}
+.stat-it .lb{font-size:10px;color:var(--tl);margin-top:2px}
+
+.blk{font-size:12px;color:var(--t);line-height:1.7;margin-bottom:12px}
+
+.pain-g{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px}
+.pain-it{background:var(--ba);border-radius:var(--r);padding:12px;border-left:3px solid var(--p)}
+.pain-it h4{font-size:13px;font-weight:700;color:var(--s);margin-bottom:2px}
+.pain-it p{font-size:11px;color:var(--tl)}
+
+.sol-box{background:linear-gradient(135deg,var(--p),#D94A1A);border-radius:var(--r);padding:18px 20px;color:#fff;margin-bottom:12px}
+.sol-box h3{font-size:15px;font-weight:700;margin-bottom:6px}
+.sol-box p{font-size:11px;opacity:.9;line-height:1.6;margin-bottom:6px}
+.sol-box .slg{padding:3px 14px;background:rgba(255,255,255,.12);border-radius:20px;font-size:12px;font-weight:700;display:inline-block}
+.sol-list{display:flex;flex-direction:column;gap:6px}
+.sol-list .si{display:flex;gap:8px;background:rgba(255,255,255,.1);padding:8px 12px;border-radius:var(--r);font-size:11px;line-height:1.5}
+.sol-list .si .n{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0;margin-top:1px}
+
+.case-it{border:1px solid var(--e);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.case-it:last-child{margin-bottom:0}
+.case-hd{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;cursor:pointer;background:var(--ba);gap:8px;-webkit-tap-highlight-color:transparent}
+.case-hd:active{opacity:.7}
+.case-hd .l{display:flex;align-items:center;gap:6px;flex:1;min-width:0}
+.case-hd .co{font-size:9px;font-weight:600;padding:1px 8px;border-radius:4px;background:var(--ps);color:var(--p);white-space:nowrap}
+.case-hd h4{font-size:12px;font-weight:600;color:var(--s);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-hd .ar{font-size:11px;color:var(--tl);transition:var(--tr)}
+.case-it.open .case-hd .ar{transform:rotate(180deg)}
+.case-bd{padding:0 14px 14px;display:none}
+.case-it.open .case-bd{display:block}
+.case-bd .bg{font-size:11px;color:var(--t);margin-bottom:8px;line-height:1.6}
+.case-bd .bg strong{color:var(--s)}
+.case-ins{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.case-ins .cb{background:var(--ba);border-radius:var(--r);padding:8px 10px;border-left:3px solid var(--p)}
+.case-ins .cb h5{font-size:10px;font-weight:700;color:var(--s);margin-bottom:3px}
+.case-ins .cb p{font-size:10px;color:var(--tl);line-height:1.5}
+.case-res{background:linear-gradient(135deg,var(--ps),#fff);border-radius:var(--r);padding:8px 12px;font-size:11px;font-weight:600;color:var(--pd);display:flex;align-items:center;gap:6px}
+.case-res .t{background:var(--p);color:#fff;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:700;white-space:nowrap}
+
+.teacher-w{display:grid;grid-template-columns:90px 1fr;gap:14px}
+.teacher-w img{width:100%;border-radius:var(--r)}
+.teacher-w .info h2{font-size:17px;font-weight:800;color:var(--s)}
+.teacher-w .info .ti{font-size:11px;color:var(--p);font-weight:600;margin:2px 0 6px}
+.teacher-w .info .bio{font-size:11px;color:var(--t);line-height:1.6;margin-bottom:6px}
+.teacher-w .info .rs{display:grid;grid-template-columns:1fr 1fr;gap:1px 8px}
+.teacher-w .info .rs li{font-size:10px;color:var(--tl);display:flex;align-items:center;gap:3px;padding:1px 0}
+.teacher-w .info .rs li::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--p);flex-shrink:0}
+
+.flow-g{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.flow-it{background:var(--ba);border-radius:var(--r);padding:14px 10px;text-align:center}
+.flow-it .sn{width:24px;height:24px;border-radius:50%;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-size:10px;font-weight:700}
+.flow-it h4{font-size:12px;font-weight:700;color:var(--s)}
+.flow-it .sub{font-size:10px;color:var(--p);font-weight:600;margin:1px 0 4px}
+.flow-it p{font-size:10px;color:var(--tl);line-height:1.5}
+.flow-it .nt{font-size:9px;color:var(--tl);margin-top:6px;padding-top:6px;border-top:1px dashed var(--e)}
+
+.outline-g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.outline-day{border:1px solid var(--e);border-radius:var(--r);overflow:hidden}
+.outline-day .hd{padding:8px 12px;background:var(--ba);display:flex;align-items:center;gap:6px}
+.outline-day .hd .db{background:var(--p);color:#fff;padding:1px 8px;border-radius:10px;font-size:9px;font-weight:600}
+.outline-day .hd span{font-size:11px;font-weight:600;color:var(--s)}
+.outline-day .bd{padding:10px 12px}
+.outline-day .part{margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--e)}
+.outline-day .part:last-child{margin-bottom:0;padding-bottom:0;border:none}
+.outline-day .part-title{font-size:11px;font-weight:700;color:var(--s);margin-bottom:3px}
+.outline-day .part-items{font-size:10px;color:var(--tl);padding-left:8px;border-left:2px solid var(--p)}
+.outline-day .nt{font-size:9px;color:var(--tl);margin-top:8px;padding-top:8px;border-top:1px dashed var(--e)}
+
+.course-card{border:1px solid var(--e);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.course-card .hd{padding:10px 14px;background:var(--ba);display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;color:var(--s)}
+.course-card .bd{padding:10px 14px}
+.course-card .bd ul{display:flex;flex-direction:column;gap:5px}
+.course-card .bd li{font-size:11px;color:var(--t);display:flex;gap:6px;line-height:1.5}
+.course-card .bd li .ck{color:var(--p);font-weight:700;flex-shrink:0}
+.course-card .bd .tip{margin-top:8px;padding:6px 10px;background:var(--ps);border-radius:var(--r);font-size:10px;color:var(--pd);border-left:3px solid var(--p);line-height:1.5}
+
+.pricing-g{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.pricing-it{border:1px solid var(--e);border-radius:var(--r);padding:14px 10px;text-align:center}
+.pricing-it.feat{border-color:var(--p);background:var(--ps)}
+.pricing-it .pn{font-size:13px;font-weight:700;color:var(--s)}
+.pricing-it .pa{font-size:20px;font-weight:800;color:var(--p);margin:3px 0}
+.pricing-it .pa .u{font-size:10px;font-weight:500}
+.pricing-it .note{font-size:9px;color:var(--tl);margin-bottom:6px;line-height:1.4}
+.pricing-it ul{text-align:left;margin-bottom:6px}
+.pricing-it li{font-size:10px;color:var(--t);padding:3px 0;border-bottom:1px solid var(--e);display:flex;gap:5px}
+.pricing-it li:last-child{border:none}
+.pricing-it li .ck{color:var(--p);font-weight:700}
+.pricing-it .extra{font-size:9px;padding:5px 8px;background:var(--ps);border-radius:var(--r);color:var(--pd)}
+
+.testi-g{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.testi-it{background:var(--ba);border-radius:var(--r);padding:12px;border-left:3px solid var(--p)}
+.testi-it .txt{font-size:11px;color:var(--t);line-height:1.6;margin-bottom:6px}
+.testi-it .au{font-size:11px;font-weight:600;color:var(--s)}
+
+.gallery-g{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.gallery-it{border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;background:var(--ba)}
+.gallery-it img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.gallery-it:hover img{transform:scale(1.04)}
+
+.cover-g{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.cover-it{border-radius:var(--r);overflow:hidden;border:1px solid var(--e);background:var(--ba)}
+.cover-it img{width:100%;display:block}
+.cover-it .lb{padding:4px 6px;font-size:9px;color:var(--tl);text-align:center;background:#fff}
+
+.client-g{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.client-it{padding:10px;border:1px solid var(--e);border-radius:var(--r);text-align:center;background:#fff}
+.client-it .cat{font-size:11px;font-weight:600;color:var(--s)}
+.client-it .desc{font-size:9px;color:var(--tl);margin-top:1px}
+
+.sec-label{font-size:11px;font-weight:600;color:var(--s);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--e);display:flex;align-items:center;gap:6px}
+.sec-label .ln{width:3px;height:14px;border-radius:2px;background:var(--p);flex-shrink:0}
+
+.cta{padding:24px 14px;text-align:center;background:linear-gradient(135deg,var(--p),#C43E12);color:#fff;margin:0 14px 14px;border-radius:var(--rl)}
+.cta h2{font-size:18px;font-weight:800;margin-bottom:4px}
+.cta p{font-size:12px;opacity:.85;margin-bottom:12px}
+.cta .btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+
+.footer{padding:24px 14px 20px;text-align:center;font-size:10px;color:var(--tl)}
+.footer img{height:18px;margin:0 auto 6px;opacity:.35}
+.footer .copy{margin-top:8px;padding-top:8px;border-top:1px solid var(--e)}
+
+.back-top{position:fixed;bottom:18px;right:18px;width:36px;height:36px;border-radius:50%;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 4px 16px rgba(255,107,53,.35);cursor:pointer;transition:var(--tr);opacity:0;pointer-events:none;z-index:50}
+.back-top.show{opacity:1;pointer-events:auto}
+
+/* ====== 响应式：平板端 (≥768px) ====== */
+@media(min-width:768px){
+  :root{font-size:16px}
+  .container{max-width:900px;padding:0 32px}
+  .header{height:56px}
+  .logo img{height:24px}
+  .header .meta{font-size:13px}
+  .hero{padding:80px 0 36px}
+  .hero-badge{font-size:12px;padding:4px 16px}
+  .hero h1{font-size:36px}
+  .hero .sub{font-size:14px}
+  .hero .desc{font-size:14px;max-width:520px}
+  .nav-grid{max-width:900px;gap:10px;padding:22px 32px}
+  .nav-card{padding:16px 12px}
+  .nav-card .nm{font-size:14px}
+  .nav-card .sc{font-size:12px}
+  .section{margin:0 32px 14px}
+  .section-hd{padding:16px 20px}
+  .section-hd .tag{font-size:10px;padding:3px 12px}
+  .section-hd .ttl{font-size:16px}
+  .section-bd{padding:0 20px 20px}
+  .stats-row{gap:10px}
+  .stat-it{padding:14px 8px}
+  .stat-it .num{font-size:26px}
+  .stat-it .lb{font-size:12px}
+  .blk{font-size:14px}
+  .pain-g{gap:12px}
+  .pain-it{padding:14px}
+  .pain-it h4{font-size:15px}
+  .pain-it p{font-size:13px}
+  .sol-box{padding:22px 28px}
+  .sol-box h3{font-size:18px}
+  .sol-box p{font-size:13px}
+  .sol-box .slg{font-size:14px}
+  .sol-list .si{font-size:13px;padding:10px 14px}
+  .case-hd{padding:13px 16px}
+  .case-hd h4{font-size:14px}
+  .case-hd .co{font-size:10px}
+  .case-bd{padding:0 16px 16px}
+  .case-bd .bg{font-size:13px}
+  .case-ins{gap:10px}
+  .case-ins .cb{padding:10px 12px}
+  .case-ins .cb h5{font-size:12px}
+  .case-ins .cb p{font-size:12px}
+  .case-res{font-size:13px;padding:10px 14px}
+  .teacher-w{gap:24px}
+  .teacher-w img{width:140px;border-radius:12px}
+  .teacher-w .info h2{font-size:22px}
+  .teacher-w .info .ti{font-size:14px}
+  .teacher-w .info .bio{font-size:14px}
+  .teacher-w .info .rs li{font-size:13px}
+  .flow-g{gap:12px}
+  .flow-it{padding:18px 14px}
+  .flow-it .sn{width:30px;height:30px;font-size:12px}
+  .flow-it h4{font-size:14px}
+  .flow-it .sub{font-size:12px}
+  .flow-it p{font-size:12px}
+  .flow-it .nt{font-size:11px}
+  .outline-day .hd{padding:10px 14px}
+  .outline-day .hd .db{font-size:10px}
+  .outline-day .hd span{font-size:13px}
+  .outline-day .bd{padding:12px 14px}
+  .outline-day .part-title{font-size:13px}
+  .outline-day .part-items{font-size:12px}
+  .outline-day .nt{font-size:11px}
+  .course-card .hd{font-size:14px;padding:12px 16px}
+  .course-card .bd{padding:12px 16px}
+  .course-card .bd li{font-size:13px}
+  .course-card .bd .tip{font-size:12px}
+  .pricing-it{padding:18px 14px}
+  .pricing-it .pn{font-size:15px}
+  .pricing-it .pa{font-size:24px}
+  .pricing-it .pa .u{font-size:12px}
+  .pricing-it .note{font-size:11px}
+  .pricing-it li{font-size:12px}
+  .pricing-it .extra{font-size:10px}
+  .testi-g{gap:12px}
+  .testi-it{padding:14px}
+  .testi-it .txt{font-size:13px}
+  .testi-it .au{font-size:13px}
+  .sec-label{font-size:13px}
+  .gallery-g,.cover-g{gap:8px}
+  .cover-it .lb{font-size:11px;padding:6px 8px}
+  .client-it{padding:14px}
+  .client-it .cat{font-size:13px}
+  .client-it .desc{font-size:11px}
+  .cta{padding:32px 40px;margin:0 32px 14px}
+  .cta h2{font-size:22px}
+  .cta p{font-size:14px}
+  .footer{padding:32px 14px 24px;font-size:12px}
+}
+
+/* ====== 响应式：桌面端 (≥1024px) ====== */
+@media(min-width:1024px){
+  :root{font-size:16px}
+  .container{max-width:1100px;padding:0 40px}
+  .header{height:64px}
+  .logo img{height:28px}
+  .header .meta{font-size:14px}
+  .hero{padding:96px 0 48px}
+  .hero-badge{font-size:13px;padding:5px 18px;margin-bottom:14px}
+  .hero h1{font-size:46px}
+  .hero .sub{font-size:15px;margin-bottom:14px}
+  .hero .desc{font-size:15px;max-width:560px}
+  .nav-grid{max-width:1100px;gap:12px;padding:26px 40px}
+  .nav-card{padding:18px 14px}
+  .nav-card .nm{font-size:15px}
+  .nav-card .sc{font-size:13px}
+  .section{margin:0 auto 18px;max-width:1100px;border-radius:20px}
+  .section-hd{padding:18px 24px}
+  .section-hd .tag{font-size:11px;padding:3px 14px;letter-spacing:.8px}
+  .section-hd .ttl{font-size:18px}
+  .section-bd{padding:0 24px 24px}
+  .stats-row{gap:14px;margin-bottom:18px}
+  .stat-it{padding:16px 12px}
+  .stat-it .num{font-size:32px}
+  .stat-it .lb{font-size:13px}
+  .blk{font-size:15px;line-height:1.8}
+  .pain-g{gap:14px}
+  .pain-it{padding:16px}
+  .pain-it h4{font-size:16px}
+  .pain-it p{font-size:14px}
+  .sol-box{padding:26px 32px;border-radius:14px}
+  .sol-box h3{font-size:20px}
+  .sol-box p{font-size:14px}
+  .sol-box .slg{font-size:15px}
+  .sol-list .si{font-size:14px;padding:12px 16px;gap:10px}
+  .teacher-w img{width:160px}
+  .teacher-w .info h2{font-size:26px}
+  .teacher-w .info .ti{font-size:15px}
+  .teacher-w .info .bio{font-size:15px}
+  .teacher-w .info .rs{grid-template-columns:1fr 1fr}
+  .teacher-w .info .rs li{font-size:14px}
+  .flow-g{gap:14px}
+  .flow-it{padding:22px 18px}
+  .flow-it .sn{width:34px;height:34px;font-size:13px}
+  .flow-it h4{font-size:16px}
+  .flow-it .sub{font-size:13px}
+  .flow-it p{font-size:13px}
+  .flow-it .nt{font-size:12px}
+  .outline-g{gap:14px}
+  .outline-day .hd{padding:12px 16px}
+  .outline-day .hd .db{font-size:11px}
+  .outline-day .hd span{font-size:14px}
+  .outline-day .bd{padding:14px 16px}
+  .outline-day .part-title{font-size:14px}
+  .outline-day .part-items{font-size:13px}
+  .outline-day .nt{font-size:12px}
+  .course-card{border-radius:12px}
+  .course-card .hd{font-size:15px;padding:14px 18px}
+  .course-card .bd{padding:14px 18px}
+  .course-card .bd li{font-size:14px}
+  .course-card .bd .tip{font-size:13px;padding:8px 12px}
+  .pricing-g{gap:14px}
+  .pricing-it{border-radius:14px;padding:22px 18px}
+  .pricing-it .pn{font-size:17px}
+  .pricing-it .pa{font-size:28px}
+  .pricing-it li{font-size:13px;padding:4px 0}
+  .pricing-it .extra{font-size:11px}
+  .testi-g{gap:14px}
+  .testi-it{padding:16px}
+  .testi-it .txt{font-size:14px}
+  .testi-it .au{font-size:14px}
+  .gallery-g{grid-template-columns:repeat(4,1fr);gap:10px}
+  .cover-g{grid-template-columns:repeat(3,1fr);gap:10px}
+  .cta{margin:0 auto 18px;max-width:1100px;border-radius:20px;padding:40px 48px}
+  .cta h2{font-size:26px}
+  .cta p{font-size:15px}
+  .cta .btns a{font-size:14px;padding:9px 22px}
+}
+
+/* ====== 响应式：大桌面端 (≥1280px) ====== */
+@media(min-width:1280px){
+  .container{max-width:1200px}
+  .nav-grid{max-width:1200px}
+  .section{max-width:1200px}
+  .cta{max-width:1200px}
+  .hero h1{font-size:52px}
+  .hero .desc{font-size:16px;max-width:600px}
+  .stat-it .num{font-size:36px}
+  .pain-g{grid-template-columns:repeat(4,1fr)}
+  .flow-g{grid-template-columns:repeat(3,1fr)}
+  .gallery-g{grid-template-columns:repeat(4,1fr)}
+  .cover-g{grid-template-columns:repeat(3,1fr)}
+  .teacher-w{grid-template-columns:160px 1fr}
+  .teacher-w .info .rs{grid-template-columns:1fr 1fr}
+  .case-ins{grid-template-columns:1fr 1fr}
+}
+</style>
+<body>
+
+<!-- ====== Header ====== -->
+<header class="header">
+  <div class="container">
+    <a href="#" class="logo"><img src="images/lehuo_logo1.png" alt="乐活OKR"></a>
+    <span class="meta">产品与服务简介</span>
+  </div>
+</header>
+
+<!-- ====== Hero ====== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge"><span class="dot"></span> 陶慧刚老师原创 · 左右脑OKR实践模型</div>
+    <h1>让战略<span class="hl">落地</span>，让员工<span class="hl">发光</span></h1>
+    <p class="sub">Aug. 8th, 2025</p>
+    <p class="desc">基于「左右脑OKR实践模型」和丰富的本土实践经验，系统化提升团队的自驱力和执行力，让战略有效落地。</p>
+  </div>
+</section>
+
+<!-- ====== Quick Nav ====== -->
+<div class="nav-grid">
+  <a href="#sec-intro" class="nav-card"><div class="nm">核心方案</div><div class="sc">痛点与解决</div></a>
+  <a href="#sec-case" class="nav-card"><div class="nm">成功案例</div><div class="sc">5家企业实践</div></a>
+  <a href="#sec-teacher" class="nav-card"><div class="nm">专家介绍</div><div class="sc">陶慧刚老师</div></a>
+  <a href="#sec-flow" class="nav-card"><div class="nm">服务流程</div><div class="sc">三步落地</div></a>
+  <a href="#sec-course" class="nav-card"><div class="nm">课程服务</div><div class="sc">大纲与价格</div></a>
+  <a href="#sec-more" class="nav-card"><div class="nm">更多资讯</div><div class="sc">报道与合作</div></a>
+</div>
+
+<!-- ====== 核心方案 ====== -->
+<div class="section open" id="sec-intro">
+  <div class="section-hd" onclick="toggleSec(this)">
+    <div class="left"><span class="tag tag1">核心</span><span class="ttl">核心问题与解决方案</span></div>
+    <span class="arr">▾</span>
+  </div>
+  <div class="section-bd">
+    <div class="stats-row">
+      <div class="stat-it"><div class="num">102</div><div class="lb">实施交付期数</div></div>
+      <div class="stat-it"><div class="num">98%</div><div class="lb">NPS推荐度</div></div>
+      <div class="stat-it"><div class="num">数万</div><div class="lb">累计学员</div></div>
+      <div class="stat-it"><div class="num">900+</div><div class="lb">覆盖企业</div></div>
+      <div class="stat-it"><div class="num">20</div><div class="lb">战略合作</div></div>
+    </div>
+
+    <p class="blk">每到年末，很多企业会拉着高管甚或外部顾问讨论战略并输出一套KPI指标。但如何让"飘在天上"的战略变得可落地、可执行，并帮助团队拿到所期望的结果？管理者缺乏一套实现目标和激励员工的有效方法。</p>
+
+    <div class="pain-g">
+      <div class="pain-it"><h4>跑歪</h4><p>目标看似已向下分解，但执行过程中目标不清晰，方向不统一</p></div>
+      <div class="pain-it"><h4>扯皮</h4><p>责任不到位，部门间相互推诿，无人真正担责</p></div>
+      <div class="pain-it"><h4>撕扯</h4><p>方向不一致，跨部门协作缺乏共识，资源争夺激烈</p></div>
+      <div class="pain-it"><h4>躺平</h4><p>赏罚不清，激励机制失效，员工缺乏自驱力与执行力</p></div>
+    </div>
+
+    <div class="sol-box">
+      <h3>解决方案</h3>
+      <p>本产品和服务基于"东方OKR播种机"陶慧刚老师原创的左右脑OKR实践模型和其丰富的本土实践经验。参训学员将学习如何以OKR为抓手，系统化地提升团队的自驱力和执行力，并拿到最为理想的业务结果。</p>
+      <div class="slg">让战略落地，让员工发光</div>
+    </div>
+    <div class="sol-list">
+      <div class="si"><span class="n">1</span><span>管理者缺乏对目标管理的认知或未掌握目标设定的方法，导致团队运转低效、成员投入度低、目标无法驱动团队</span></div>
+      <div class="si"><span class="n">2</span><span>企业或团队处于初创期或高速发展阶段，目标与过程的多变性导致传统的KPI体系支撑不了战略和组织</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 成功案例 ====== -->
+<div class="section" id="sec-case">
+  <div class="section-hd" onclick="toggleSec(this)">
+    <div class="left"><span class="tag tag2">案例</span><span class="ttl">成功案例</span></div>
+    <span class="arr">▾</span>
+  </div>
+  <div class="section-bd">
+    <p class="blk">五家不同行业企业的OKR落地实践，点击展开查看完整案例</p>
+
+    <div class="case-it open">
+      <div class="case-hd" onclick="toggleCase(this)">
+        <div class="l"><span class="co">零售·AI</span><h4>100个诸葛亮</h4></div>
+        <span class="ar">▾</span>
+      </div>
+      <div class="case-bd">
+        <p class="bg"><strong>背景：</strong>H公司是一家以算法和技术驱动的零售企业。创始人大学生创业15年，2020年迎来转折，一年内获5次融资估值近百亿。员工快速膨胀到8,000人，公司拥有一批来自BAT和MBB的牛人，但战略迟滞不前、持续巨亏。</p>
+        <div class="case-ins">
+          <div class="cb"><h5>解题思路</h5><p>H公司缺少的是一套有效的指挥体系和沟通范式。最适合成长期企业的就是<strong>O-KR-A</strong>（目标→策略→行动），让目标不再是简单的数字指标分解，而是以OKR共识形式让各部门目标有效对齐。</p></div>
+          <div class="cb"><h5>实施效果</h5><p>自2023年开始导入OKR，每个季度严格按O-KR-A范式对齐部门目标，持之以恒做好OKR立盘、过程管理和结案复盘三板斧。</p></div>
+        </div>
+        <div class="case-res"><span class="t">成果</span> 中后台减编30%，2024年业务增长100%，净利润1亿+</div>
+      </div>
+    </div>
+
+    <div class="case-it">
+      <div class="case-hd" onclick="toggleCase(this)">
+        <div class="l"><span class="co">科技·机器人</span><h4>学霸CEO</h4></div>
+        <span class="ar">▾</span>
+      </div>
+      <div class="case-bd">
+        <p class="bg"><strong>背景：</strong>B公司是一家康复机器人研发制造企业。海归学霸CEO凭一己之力将公司发展到200余人，但下属无法对目标负责，跨部门协作总完不成，360环评形同虚设，外部高管难留下。</p>
+        <div class="case-ins">
+          <div class="cb"><h5>解题思路</h5><p>CEO每次都提前写好减一层的OKR再布置下去，导致干部思考能力减弱、战略解码依赖CEO一人、强耦合的各部门目标变成互不负责。</p></div>
+          <div class="cb"><h5>实施效果</h5><p>导入OKR陪跑服务，重点放在战略解码与评价考核体系，让减一层自己写OKR并通过共识会对齐。</p></div>
+        </div>
+        <div class="case-res"><span class="t">成果</span> 培养筛选出一批真正能担责的中高层干部，让组织重新焕发创业之光</div>
+      </div>
+    </div>
+
+    <div class="case-it">
+      <div class="case-hd" onclick="toggleCase(this)">
+        <div class="l"><span class="co">电子消费品</span><h4>从保姆到HRBP</h4></div>
+        <span class="ar">▾</span>
+      </div>
+      <div class="case-bd">
+        <p class="bg"><strong>背景：</strong>M公司是一家家用电子消费品企业。创始人为外企500强背景，切入潜力边缘市场快速发展，但原管理思维不适配现阶段，决策效率低、跨部门协作问题严重。</p>
+        <div class="case-ins">
+          <div class="cb"><h5>解题思路</h5><p>OKR的导入带来文化升级契机，让业务部门高潜人才和中后台部门以OKR教练身份深入理解各业务。</p></div>
+          <div class="cb"><h5>实施效果</h5><p>2023年导入OKR，组建以HRBP为主、各部门高潜人才为辅的OKR教练团队。</p></div>
+        </div>
+        <div class="case-res"><span class="t">成果</span> 涌现能洞察真实业务需求并给予专业人力资源支撑的好政委</div>
+      </div>
+    </div>
+
+    <div class="case-it">
+      <div class="case-hd" onclick="toggleCase(this)">
+        <div class="l"><span class="co">AIoT·工程机械</span><h4>复制超级兵</h4></div>
+        <span class="ar">▾</span>
+      </div>
+      <div class="case-bd">
+        <p class="bg"><strong>背景：</strong>T公司从事工程机械远程遥控系统研制。留美精英回国拉起超配精英团队，快速打开市场但撞上"新秀墙"——合同交付时效和质量不稳定。</p>
+        <div class="case-ins">
+          <div class="cb"><h5>解题思路</h5><p>最大瓶颈在"技术工程师"岗位，仅1人胜任且难复制。将该岗位分解为多个不同人才画像的岗位。</p></div>
+          <div class="cb"><h5>实施效果</h5><p>分解为交付岗（PMO画像）、技术岗（自己培养）、客户关系岗（大客户销售画像）。</p></div>
+        </div>
+        <div class="case-res"><span class="t">成果</span> 三岗分离后超级兵卡点有效解决，业务上了一个大台阶</div>
+      </div>
+    </div>
+
+    <div class="case-it">
+      <div class="case-hd" onclick="toggleCase(this)">
+        <div class="l"><span class="co">芯片设计</span><h4>天才创始人</h4></div>
+        <span class="ar">▾</span>
+      </div>
+      <div class="case-bd">
+        <p class="bg"><strong>背景：</strong>R公司是芯片设计高科技企业。留美博士创始人研发出远超同行的芯片，快速抢占大量市场份额。2022年规模急速膨胀，管理压力陡增。</p>
+        <div class="case-ins">
+          <div class="cb"><h5>解题思路</h5><p>海量定制化需求让研发资源捉襟见肘。从源头"需求管理"入手：聚焦战略、建立流程、捋清职责。</p></div>
+          <div class="cb"><h5>实施效果</h5><p>举办年度战略会确定新能源市场战略；建立需求管理流程和优先级管理；以OKR捋清整条流程职责。</p></div>
+        </div>
+        <div class="case-res"><span class="t">成果</span> 营收增长100%并盈利，躲过2023年行业至暗时刻</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 专家介绍 ====== -->
+<div class="section" id="sec-teacher">
+  <div class="section-hd" onclick="toggleSec(this)">
+    <div class="left"><span class="tag tag3">专家</span><span class="ttl">专家介绍</span></div>
+    <span class="arr">▾</span>
+  </div>
+  <div class="section-bd">
+    <div class="teacher-w">
+      <img src="images/media_image6.png" alt="" onerror="this.style.display='none'">
+      <div class="info">
+        <h2>陶慧刚</h2>
+        <div class="ti">战略与组织发展专家 · 左右脑模型发明人</div>
+        <p class="bio">14年外企管理经验及14年创业经历，现任乐活大学创办人、中欧国际工商学院eLab课程导师、混沌学园课程导师，源码资本、天鹰资本等多家知名投资机构特聘导师，多家行业头部企业战略与组织发展顾问。</p>
+        <ul class="rs">
+          <li>乐活大学创办人</li><li>中欧国际工商学院eLab课程导师</li>
+          <li>混沌学园课程导师</li><li>源码资本特聘导师</li>
+          <li>天鹰资本特聘导师</li><li>张江创投特聘导师</li>
+          <li>东科创星特聘导师</li><li>XMAN加速器特聘导师</li>
+          <li>好特卖战略顾问</li><li>智驾汽车战略顾问</li>
+          <li>凯乐士科技战略顾问</li><li>多家头部企业战略顾问</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 服务流程 ====== -->
+<div class="section" id="sec-flow">
+  <div class="section-hd" onclick="toggleSec(this)">
+    <div class="left"><span class="tag tag4">流程</span><span class="ttl">产品与服务流程</span></div>
+    <span class="arr">▾</span>
+  </div>
+  <div class="section-bd">
+    <div class="flow-g">
+      <div class="flow-it"><div class="sn">1</div><h4>系统导入</h4><div class="sub">OKR数字化管理培训</div><p>补全OKR理论和实践的认知差，拉齐核心管理层认知，学习OKR实践方法。</p><div class="nt">30人以下团队课后可直接实践</div></div>
+      <div class="flow-it"><div class="sn">2</div><h4>方案商定</h4><div class="sub">售前顾问1V1服务</div><p>基于对企业情况的了解给出初版方案，双方商定最佳落地方案。</p><div class="nt">内训/工作坊/教练培养/陪跑</div></div>
+      <div class="flow-it"><div class="sn">3</div><h4>方案落地</h4><div class="sub">入场服务</div><p>确定项目负责人，按节点推动实施，组织阶段性复盘会或结案会。</p><div class="nt">建议先参加STEP1培训</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 课程服务 ====== -->
+<div class="section" id="sec-course">
+  <div class="section-hd" onclick="toggleSec(this)">
+    <div class="left"><span class="tag tag5">课程</span><span class="ttl">课程服务与价格</span></div>
+    <span class="arr">▾</span>
+  </div>
+  <div class="section-bd">
+    <p class="blk">两天系统课程，从理论到实战全方位掌握OKR管理</p>
+
+    <div class="course-card">
+      <div class="hd"><span style="background:#FFE8E5;width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--p);flex-shrink:0;">人</span> 学员对象</div>
+      <div class="bd"><ul><li><span class="ck">-</span> 中、高层管理者</li><li><span class="ck">-</span> 重点培养的高潜管理者</li><li><span class="ck">-</span> 创始人、CEO</li><li><span class="ck">-</span> HRVP、HRD、HRBP</li></ul></div>
+    </div>
+
+    <div class="course-card">
+      <div class="hd"><span style="background:#E5F9E7;width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#2ECC71;flex-shrink:0;">标</span> 课程收益</div>
+      <div class="bd">
+        <ul>
+          <li><span class="ck">-</span> 学习"左右脑模型"，读懂管理问题根因，掌握OKR底层逻辑</li>
+          <li><span class="ck">-</span> 锻造战略思维，构建敏捷战略执行力体系</li>
+          <li><span class="ck">-</span> 掌握OKR方法论，用目标驱动团队并设计激励体系</li>
+          <li><span class="ck">-</span> 学习OKR撰写规范与技巧，区分重复型和探索型目标</li>
+          <li><span class="ck">-</span> 用真实案例实战演练OKR战略解码全流程</li>
+        </ul>
+        <div class="tip">1号位带领核心团队一起参加效果更佳。不仅能拉齐团队的管理思想和方法，还有机会让老师在现场引导设定自己团队的OKR。</div>
+      </div>
+    </div>
+
+    <div class="sec-label"><span class="ln"></span>课程大纲</div>
+    <div class="outline-g">
+      <div class="outline-day">
+        <div class="hd"><span class="db">DAY 1</span><span>系统导入 → OKR撰写</span></div>
+        <div class="bd">
+          <div class="part"><div class="part-title">PART1 系统导入</div><div class="part-items">沙盘模拟：企业经营生存竞技<br>小组学习：目标管理与行动管理</div></div>
+          <div class="part"><div class="part-title">PART2 OKR管理方法</div><div class="part-items">理论学习：OKR的左右脑管理模型<br>案例教学：OKR如何驱动团队</div></div>
+          <div class="part"><div class="part-title">PART3 敏捷战略制定</div><div class="part-items">目标管理结构树 / 战略源点<br>市场洞察与战略目标</div></div>
+          <div class="part"><div class="part-title">PART4 OKR撰写规范与技巧</div><div class="part-items">S.M.T原则 / 可实现性 / 相关性<br>重复型与探索型目标差异化结构<br>晚自习：撰写企业自己的OKR</div></div>
+          <div class="nt">DAY1课后安排讨论和OKR作业，建议住宿</div>
+        </div>
+      </div>
+      <div class="outline-day">
+        <div class="hd"><span class="db">DAY 2</span><span>战略解码 → 课程总结</span></div>
+        <div class="bd">
+          <div class="part"><div class="part-title">PART5 OKR战略解码</div><div class="part-items">OKR战略解码流程<br>如何开好OKR共识会</div></div>
+          <div class="part"><div class="part-title">PART6 战略执行·OKR三板斧</div><div class="part-items">OKR过程管理 / OKR结案复盘</div></div>
+          <div class="part"><div class="part-title">PART7 组织保障·组织四要素</div><div class="part-items">左右脑模型 / 增量与存量文化<br>OKR领导力 / 金字塔与网状组织<br>组织环境：Context &amp; Control</div></div>
+          <div class="part"><div class="part-title">PART8 课程总结</div><div class="part-items">常见问题与解析</div></div>
+          <div class="nt">交付形式：2天公开课或企业内训/工作坊</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-label" style="margin-top:12px"><span class="ln"></span>课程价格</div>
+    <p style="font-size:10px;color:var(--tl);margin-bottom:8px;">企业采购参课费用可抵扣后续服务费用</p>
+    <div class="pricing-g">
+      <div class="pricing-it">
+        <div class="pn">标准价</div>
+        <div class="pa">6,388 <span class="u">元/人</span></div>
+        <div class="note">含2天授课费、版权教材、茶歇午餐</div>
+        <ul><li><span class="ck">-</span> 2天系统课程</li><li><span class="ck">-</span> 版权教材一套</li><li><span class="ck">-</span> 茶歇及午餐</li></ul>
+      </div>
+      <div class="pricing-it feat">
+        <div class="pn">早鸟价</div>
+        <div class="pa">5,388 <span class="u">元/人</span></div>
+        <div class="note">含2天授课费、版权教材、茶歇午餐</div>
+        <ul><li><span class="ck">-</span> 2天系统课程</li><li><span class="ck">-</span> 版权教材一套</li><li><span class="ck">-</span> 6人同行1人免费</li></ul>
+        <div class="extra">参课费可抵扣后续服务费</div>
+      </div>
+      <div class="pricing-it">
+        <div class="pn">复训优惠</div>
+        <div class="pa">880 <span class="u">元/人</span></div>
+        <div class="note">已参训学员专享</div>
+        <ul><li><span class="ck">-</span> 2天课程复训</li><li><span class="ck">-</span> 版权教材</li><li><span class="ck">-</span> 茶歇及午餐</li></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== 更多资讯 ====== -->
+<div class="section" id="sec-more">
+  <div class="section-hd" onclick="toggleSec(this)">
+    <div class="left"><span class="tag tag6">资讯</span><span class="ttl">更多资讯</span></div>
+    <span class="arr">▾</span>
+  </div>
+  <div class="section-bd">
+    <div class="sec-label"><span class="ln"></span>学员感言</div>
+    <div class="testi-g">
+      <div class="testi-it"><div class="txt">陶老师的左右脑模型完美诠释了企业管理的两面性，兼顾成熟业务与创新业务，很有落地指导价值。</div><div class="au">某头部消费企业 HRVP</div></div>
+      <div class="testi-it"><div class="txt">课程非常烧脑，从战略到目标、从执行到组织循序渐进展开，全方位给到可落地的解决方法。</div><div class="au">某AI新锐企业 创始人</div></div>
+      <div class="testi-it"><div class="txt">管理者的福音，目标拆解、团队管理、绩效考核，让你挠头的难点，陶老师通通都擅长。</div><div class="au">某智能制造企业 事业部负责人</div></div>
+      <div class="testi-it"><div class="txt">课程实战价值和知识密度非常高，从战略解码到组织建设，输出了一套完整的目标管理体系。</div><div class="au">某互联网大厂 事业部总经理</div></div>
+    </div>
+
+    <div class="sec-label" style="margin-top:12px"><span class="ln"></span>实施交付现场</div>
+    <div class="gallery-g">
+      <div class="gallery-it"><img src="images/media_image23.jpeg" alt="" onerror="this.style.display='none'"></div>
+      <div class="gallery-it"><img src="images/media_image24.jpeg" alt="" onerror="this.style.display='none'"></div>
+      <div class="gallery-it"><img src="images/media_image25.jpeg" alt="" onerror="this.style.display='none'"></div>
+      <div class="gallery-it"><img src="images/media_image26.jpeg" alt="" onerror="this.style.display='none'"></div>
+      <div class="gallery-it"><img src="images/media_image28.jpeg" alt="" onerror="this.style.display='none'"></div>
+      <div class="gallery-it"><img src="images/media_image29.jpeg" alt="" onerror="this.style.display='none'"></div>
+      <div class="gallery-it"><img src="images/media_image30.jpeg" alt="" onerror="this.style.display='none'"></div>
+      <div class="gallery-it"><img src="images/media_image31.jpeg" alt="" onerror="this.style.display='none'"></div>
+      <div class="gallery-it"><img src="images/media_image32.jpeg" alt="" onerror="this.style.display='none'"></div>
+      <div class="gallery-it"><img src="images/media_image33.jpeg" alt="" onerror="this.style.display='none'"></div>
+      <div class="gallery-it"><img src="images/media_image34.jpeg" alt="" onerror="this.style.display='none'"></div>
+      <div class="gallery-it"><img src="images/media_image35.jpeg" alt="" onerror="this.style.display='none'"></div>
+    </div>
+
+    <div class="sec-label" style="margin-top:12px"><span class="ln"></span>合作机构报道</div>
+    <div class="cover-g">
+      <div class="cover-it"><img src="images/media_image37.jpeg" alt="" onerror="this.style.display='none'"><div class="lb">合作媒体报道</div></div>
+      <div class="cover-it"><img src="images/media_image38.jpeg" alt="" onerror="this.style.display='none'"><div class="lb">合作媒体报道</div></div>
+      <div class="cover-it"><img src="images/media_image39.jpeg" alt="" onerror="this.style.display='none'"><div class="lb">合作媒体报道</div></div>
+      <div class="cover-it"><img src="images/media_image40.jpeg" alt="" onerror="this.style.display='none'"><div class="lb">客户案例报道</div></div>
+      <div class="cover-it"><img src="images/media_image41.jpeg" alt="" onerror="this.style.display='none'"><div class="lb">客户案例报道</div></div>
+      <div class="cover-it"><img src="images/media_image42.jpeg" alt="" onerror="this.style.display='none'"><div class="lb">客户案例报道</div></div>
+    </div>
+
+    <div class="sec-label" style="margin-top:12px"><span class="ln"></span>服务企业</div>
+    <div class="client-g">
+      <div class="client-it"><div class="cat">金融与消费</div><div class="desc">银行、保险、消费品牌</div></div>
+      <div class="client-it"><div class="cat">科技与AI</div><div class="desc">芯片、AIoT、机器人</div></div>
+      <div class="client-it"><div class="cat">智能制造</div><div class="desc">高端装备、工业软件</div></div>
+      <div class="client-it"><div class="cat">智能汽车</div><div class="desc">整车、自动驾驶</div></div>
+      <div class="client-it"><div class="cat">医疗赛道</div><div class="desc">医药、器械、健康</div></div>
+      <div class="client-it"><div class="cat">媒体与企业服务</div><div class="desc">传媒、SaaS、咨询</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== CTA ====== -->
+<div class="cta">
+  <h2>期待乐活能够伴您一起</h2>
+  <p>让战略落地，让员工发光</p>
+  <div class="btns">
+    <a href="mailto:contact@lehuo-okr.com" style="padding:7px 18px;border-radius:50px;background:#fff;color:var(--p);font-size:12px;font-weight:600;">contact@lehuo-okr.com</a>
+    <a href="tel:4008889999" style="padding:7px 18px;border-radius:50px;background:transparent;color:#fff;font-size:12px;font-weight:600;border:1.5px solid rgba(255,255,255,.5);">400-888-9999</a>
+  </div>
+  <p style="margin-top:10px;font-size:9px;opacity:.5;">Copyright &copy; 2010-2024 by iLohhas</p>
+</div>
+
+<!-- ====== Footer ====== -->
+<div class="footer">
+  <img src="images/lehuo_logo_white.png" alt="" onerror="this.style.display='none'" style="filter:brightness(0.3)">
+  <p>让战略落地，让员工发光</p>
+  <div class="copy">&copy; 2026 乐活OKR &nbsp;|&nbsp; v26061403</div>
+</div>
+
+<!-- ====== Back to Top ====== -->
+<div class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">^</div>
+
+<script>
+function toggleSec(el){el.closest('.section').classList.toggle('open')}
+function toggleCase(el){el.closest('.case-it').classList.toggle('open')}
+const bt=document.getElementById('backTop');
+window.addEventListener('scroll',()=>{bt.classList.toggle('show',window.scrollY>400);});
+function getSecId(id){const m=id.match(/sec-(.+)/);return m?m[1]:id}
+window.addEventListener('hashchange',()=>{const id=location.hash.replace('#','');const sec=document.getElementById(id);if(sec&&sec.classList.contains('section'))sec.classList.add('open');});
+if(location.hash){setTimeout(()=>{const id=location.hash.replace('#','');const sec=document.getElementById(id);if(sec&&sec.classList.contains('section'))sec.classList.add('open');},100);}
+</script>
+</body>
+</html>
